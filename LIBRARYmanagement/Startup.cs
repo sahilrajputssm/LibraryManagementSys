@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LIBRARYmanagement.Models;
+using LIBRARYmanagement.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,10 @@ namespace LIBRARYmanagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<iStudentDetailRep, StudentDetailRep>();
+
+            services.AddScoped<iBookDetailRep, BookDetailRep>();
+
 
             services.AddDbContext<LibManContext>(options =>
       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
